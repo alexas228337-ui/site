@@ -1,262 +1,72 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Мой Discord — ссылка</title>
-  <meta name="description" content="https://discord.com/channels/@me" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мой Discord</title>
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#7c3aed;
-      --muted:#9aa4b2;
-      --glass: rgba(255,255,255,0.03);
-      --radius:16px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url('https://cdn.discordapp.com/attachments/1052780891300184096/1159068470747734096/discord_canary_background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      overflow: hidden;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.12), transparent 8%),
-                  radial-gradient(900px 400px at 90% 90%, rgba(14,165,233,0.06), transparent 6%),
-                  var(--bg);
-      color:#e6eef8;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
+    .content {
+      text-align: center;
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.6);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 2s ease-in-out;
     }
-
-    .card{
-      width:100%;
-      max-width:920px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow: 0 10px 30px rgba(2,6,23,0.6);
-      display:flex;
-      gap:24px;
-      align-items:center;
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      font-weight: bold;
     }
-
-    .left{
-      flex:1;
-      min-width:0;
+    .content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-style: italic;
     }
-    .avatar{
-      width:110px;
-      height:110px;
-      border-radius:18px;
-      background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      color:var(--muted);
-      font-size:28px;
-      margin-bottom:18px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,0.03);
+    .content a {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 1.1rem;
+      color: #fff;
+      background-color: #7289da;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
-    h1{
-      margin:0 0 6px 0;
-      font-size:22px;
-      letter-spacing:-0.2px;
+    .content a:hover {
+      background-color: #5b6eae;
     }
-    p.desc{
-      margin:0 0 16px 0;
-      color:var(--muted);
-      font-size:14px;
-    }
-
-    .controls{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      background:linear-gradient(90deg,var(--accent), #4f46e5);
-      color:white;
-      border:none;
-      padding:10px 14px;
-      border-radius:12px;
-      cursor:pointer;
-      font-weight:600;
-      display:inline-flex;
-      gap:10px;
-      align-items:center;
-      box-shadow: 0 6px 18px rgba(79,70,229,0.16);
-      text-decoration:none;
-    }
-    .btn.secondary{
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.06);
-      color:var(--muted);
-      box-shadow:none;
-    }
-    .linkfield{
-      width:100%;
-      margin-top:12px;
-      display:flex;
-      gap:8px;
-      align-items:center;
-    }
-    .linkinput{
-      flex:1;
-      background:var(--glass);
-      border:1px solid rgba(255,255,255,0.03);
-      color: #dce9ff;
-      padding:10px 12px;
-      border-radius:10px;
-      font-size:14px;
-    }
-
-    .right{
-      width:260px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      align-items:center;
-      padding:8px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.02));
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.02);
-    }
-    .qr{
-      width:200px;
-      height:200px;
-      background:#fff;
-      border-radius:8px;
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .muted{
-      color:var(--muted);
-      font-size:13px;
-      text-align:center;
-    }
-    footer.small{
-      margin-top:6px;
-      color:rgba(255,255,255,0.04);
-      font-size:11px;
-      text-align:center;
-    }
-
-    @media(max-width:780px){
-      .card{flex-direction:column;align-items:stretch}
-      .right{width:100%;flex-direction:row;padding:12px}
-      .qr{width:120px;height:120px}
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
-  <div class="card">
-    <div class="left">
-      <div class="avatar" id="avatar">
-        <!-- Если хочешь — можно поставить картинку сюда -->
-        <span id="avatarInitials">DC</span>
-      </div>
-
-      <h1 id="displayName">YourDiscord#1234</h1>
-      <p class="desc" id="subtitle">Ссылка на мой профиль Discord — кликни или сканируй QR.</p>
-
-      <div class="controls">
-        <a id="openLink" class="btn" target="_blank" rel="noopener">
-          Открыть в Discord
-        </a>
-        <button id="copyBtn" class="btn secondary">Копировать ссылку</button>
-      </div>
-
-      <div class="linkfield" style="margin-top:14px;">
-        <input id="linkInput" class="linkinput" type="text" readonly />
-      </div>
-
-      <div style="margin-top:12px" class="muted">
-        Поделись этой страницей — удобно для профиля в соцсетях или в шапке потоков.
-      </div>
-    </div>
-
-    <div class="right">
-      <div class="qr" id="qrContainer">
-        <!-- QR изображение через Google Chart API -->
-        <img id="qrImg" alt="QR code" src="" style="width:100%;height:100%;object-fit:cover"/>
-      </div>
-      <div style="flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center">
-        <div class="muted" style="font-size:13px">Сканируй QR</div>
-        <div style="height:8px"></div>
-        <div class="small muted" style="font-size:12px">или используй ссылку</div>
-        <footer class="small">Создано автоматически • Измени ссылку в коде</footer>
-      </div>
-    </div>
+  <div class="content">
+    <h1>Discord</h1>
+    <p>Присоединяйтесь ко мне на Discord</p>
+    <a href="https://canary.discord.com/channels/@me/1359803237997477910" target="_blank">Открыть мой профиль</a>
   </div>
-
-<script>
-  /************************************************************************
-   * ВНИМАНИЕ:
-   * ЗАМЕНИ значения ниже на свою ссылку и отображаемый ник:
-   *
-   * - discordLink: полная ссылка на профиль или приглашение,
-   *   например "https://discord.com/users/123456789012345678" или "https://discord.gg/abcd"
-   * - displayName: текст никнейма, который будет виден на странице
-   ************************************************************************/
-  const discordLink = "YOUR_DISCORD_LINK"; // <-- замените на вашу ссылку
-  const displayName = "YourDiscord#1234";  // <-- замените на ваш ник (видимый)
-
-  // Заполнение элементов страницы
-  const linkInput = document.getElementById('linkInput');
-  const openLink = document.getElementById('openLink');
-  const copyBtn = document.getElementById('copyBtn');
-  const displayNameEl = document.getElementById('displayName');
-  const avatarInitials = document.getElementById('avatarInitials');
-  const qrImg = document.getElementById('qrImg');
-
-  // Если пользователь оставил PLACEHOLDER, поставим заметное предупреждение прямо на странице:
-  const isPlaceholder = discordLink === "YOUR_DISCORD_LINK" || displayName === "YourDiscord#1234";
-
-  // Функция для создания и установки QR (через Google Chart API)
-  function setQR(link){
-    const size = (window.innerWidth < 780) ? 160 : 400;
-    const url = "https://chart.googleapis.com/chart?cht=qr&chs=" + size + "x" + size + "&chl=" + encodeURIComponent(link) + "&chld=L|1";
-    qrImg.src = url;
-  }
-
-  function init(){
-    const link = isPlaceholder ? "https://discord.com" : discordLink;
-    linkInput.value = link;
-    openLink.href = link;
-    displayNameEl.textContent = (isPlaceholder ? displayName + " (замени в коде)" : displayName);
-    // Set initials for avatar (take letters before # or first two letters)
-    const initials = displayName.split('#')[0].trim().slice(0,2).toUpperCase();
-    avatarInitials.textContent = initials || "DC";
-
-    setQR(link);
-
-    // Копирование в буфер
-    copyBtn.addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(link);
-        copyBtn.textContent = "Скопировано!";
-        setTimeout(()=> copyBtn.textContent = "Копировать ссылку", 1800);
-      } catch(e){
-        // fallback
-        linkInput.select();
-        document.execCommand('copy');
-        copyBtn.textContent = "Скопировано!";
-        setTimeout(()=> copyBtn.textContent = "Копировать ссылку", 1800);
-      }
-    });
-  }
-
-  init();
-
-  // Обновляем QR при изменении размера окна
-  window.addEventListener('resize', () => {
-    setQR(linkInput.value);
-  });
-</script>
 </body>
 </html>
